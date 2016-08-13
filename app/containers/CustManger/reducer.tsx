@@ -24,7 +24,7 @@ const initialState = fromJS({
 function custMangerReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_CUST_NUM:
-            return state.set('custNum', state.get('custNum') + 1);
+            return state.set('custNum', state.get('custNum') + 10);
         case MINUS_CUST_NUM:
             return state.set('custNum', state.get('custNum') - 1);
         default:

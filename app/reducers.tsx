@@ -23,6 +23,7 @@ function routerReducer(state = routeInitialState, action) {
   return state;
 }
 
+
 export default function createReducer(asyncReducers = {}) {
   // let test = {...asyncReducers};
   const reducers = Object.assign({routing: routerReducer, global: globalReducer}, asyncReducers as ReducersMapObject);

@@ -40,8 +40,8 @@ var devConfigExtension = {
             {
                 test: /\.less$/,
                 loader: ExtractTextPlugin.extract("css?sourceMap!less?sourceMap"),
-                include: path.resolve(__dirname, "app", "styles")
-            }, {
+                include: path.resolve(__dirname, "app")
+            }, /*{
                 test: /\.less$/,
                 exclude: path.resolve(__dirname, "app", "styles") ,
                 loaders: [
@@ -49,7 +49,7 @@ var devConfigExtension = {
                     'css?sourceMap&modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
                     'less?sourceMap'
                 ]
-            },
+            },*/
             //{ test: /\.css$/, loader: "style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!less", include: path.resolve(__dirname, "app") },
             { test: /\.(jpg|png|jpg|png|woff|eot|ttf|svg|gif)$/, loader: "file-loader?name=[name].[ext]" }
         ]

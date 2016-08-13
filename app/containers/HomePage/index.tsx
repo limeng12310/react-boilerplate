@@ -7,11 +7,12 @@ import {selectNum} from '../App/selectors';
 
 import {addNum, minusNum} from '../App/actions';
 import Nav from '../../components/Nav';
+import Button from '../../components/Button';
 
 interface HomePageProps {
     num:number;
-    onAddNum: Function;
-    onMinusNum: Function;
+    onAddNum: (x: any) => void;
+    onMinusNum: (x: any) => void;
     changeRoute?: Function;
 }
 
@@ -29,13 +30,13 @@ export class HomePage extends React.Component<HomePageProps, any> {
         return (
             <div>
                 <Nav color="red"/>
-                这是首页
+                这是首页kkk
                 <p>全局数:{this.props.num}</p>
-                <button onClick={this.props.onAddNum}>加</button>
-                <button onClick={this.props.onMinusNum}>减</button>
-                <button onClick={this.openAboutPage}>切换到关于我们1</button>
-                <button onClick={() => this.props.changeRoute('/about')}>切换到关于我们2</button>
-                <button onClick={this.openAboutPageTest.bind(this)}>切换到关于我们3</button>
+                <Button onClick={this.props.onAddNum} size="small">加</Button>
+                <Button onClick={this.props.onMinusNum} disabled={true} size="small">减</Button>
+                <Button onClick={this.openAboutPage}>切换到关于我们1</Button>
+                <Button onClick={() => this.props.changeRoute('/about')} disabled={true}>切换到关于我们2</Button>
+                <Button className="customer-btn" onClick={this.openAboutPageTest.bind(this)}>切换到关于我们3</Button>
             </div>
         );
     }

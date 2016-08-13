@@ -10,14 +10,19 @@ var compiler = webpack(config);
 
 app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
+    host: "0.0.0.0",
     publicPath: config.output.publicPath
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
 
 
-app.get('*', function(req, res) {
+app.get('/app', function(req, res) {
     res.sendFile(path.join(__dirname, 'app', 'index.html'));
+});
+
+app.get('/app/utils/viewport.js', function(req, res) {
+    res.sendFile(path.join(__dirname, 'app', 'utils', 'viewport.js'));
 });
 
 app.listen(3333, function(err) {

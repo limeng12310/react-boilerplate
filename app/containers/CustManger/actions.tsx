@@ -11,7 +11,6 @@ import {
     ADD_CUST_NUM,
     MINUS_CUST_NUM
 } from './constants';
-
 export function addNum() {
     return {
         type: ADD_CUST_NUM,

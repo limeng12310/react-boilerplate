@@ -6,7 +6,6 @@ const selectCustNum = () => createSelector(
     selectCustManger(),
     (custMangerState) => custMangerState.get('custNum')
 );
-
 export {
     selectCustManger,
     selectCustNum,

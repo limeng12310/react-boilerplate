@@ -1,43 +1,34 @@
-/**
- *
- * Button.react.js
- *
- * A common button, if you pass it a prop "route" it'll render a link to a react-router route
- * otherwise it'll render a link with an onclick
- */
-
-import React, { PropTypes } from 'react';
-
-import styles from './styles.css';
-
-function Button(props) {
-  const className = props.className ? props.className : styles.button;
-
-  // Render an anchor tag
-  let button = (
-    <a className={className} href={props.href} onClick={props.onClick}>{props.children}</a>
-  );
-
-  // If the Button has a handleRoute prop, we want to render a button
-  if (props.handleRoute) {
-    button = (
-      <button className={className} onClick={props.handleRoute} >{props.children}</button>
-    );
-  }
-
-  return (
-    <div className={styles.buttonWrapper}>
-      {button}
-    </div>
-  );
+const classNames = require('classnames');
+const react_1 = require('react');
+const React = require('react');
+class Button extends React.Component {
+    render() {
+        const { prefixCls, className, size, type, disabled, onClick, children } = this.props;
+        const btnClass = classNames({
+            [className]: true,
+            [prefixCls]: true,
+            [`${prefixCls}-disabled`]: disabled,
+            [`${prefixCls}-small`]: size === 'small',
+        });
+        return (React.createElement("button", {className: btnClass, type: type, disabled: disabled, onClick: onClick}, children));
+    }
 }
-
 Button.propTypes = {
-  className: PropTypes.string,
-  handleRoute: PropTypes.func,
-  href: PropTypes.string,
-  onClick: PropTypes.func,
-  children: PropTypes.node.isRequired,
+    prefixCls: react_1.PropTypes.string,
+    type: react_1.PropTypes.string,
+    size: react_1.PropTypes.string,
+    disabled: react_1.PropTypes.bool,
+    icon: react_1.PropTypes.bool,
+    onClick: react_1.PropTypes.func,
+    className: react_1.PropTypes.string,
 };
-
-export default Button;
+Button.defaultProps = {
+    prefixCls: 'bm-button',
+    type: 'button',
+    disabled: false,
+    onClick: () => { },
+    className: '',
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = Button;
+//# sourceMappingURL=index.js.map
