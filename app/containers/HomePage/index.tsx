@@ -8,6 +8,7 @@ import {selectNum} from '../App/selectors';
 import {addNum, minusNum} from '../App/actions';
 import Nav from '../../components/Nav';
 import Button from '../../components/Button';
+import Alert from '../../components/Alert';
 
 interface HomePageProps {
     num:number;
@@ -26,6 +27,9 @@ export class HomePage extends React.Component<HomePageProps, any> {
     openAboutPageTest () {
         this.props.changeRoute('/about');
     }
+    showAlert() {
+        Alert.alert();
+    }
     render() {
         return (
             <div>
@@ -37,6 +41,7 @@ export class HomePage extends React.Component<HomePageProps, any> {
                 <Button onClick={this.openAboutPage}>切换到关于我们1</Button>
                 <Button onClick={() => this.props.changeRoute('/about')} disabled={true}>切换到关于我们2</Button>
                 <Button className="customer-btn" onClick={this.openAboutPageTest.bind(this)}>切换到关于我们3</Button>
+                <Button onClick={this.showAlert}>showAlert</Button>
             </div>
         );
     }

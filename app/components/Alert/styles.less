@@ -1,0 +1,27 @@
+@alertPrefixCls: bm-alert;
+
+.@{alertPrefixCls} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    &-mask{
+        .bg-mask();
+    };
+    &-wrap{
+        position: relative;
+        .px2px(width, 300px);
+        max-height: 80%;
+        .scroll(overflow-y);
+        background-color: @bg-4;
+        .border();
+        .border-radius(@radius-2);
+        z-index: 1000;
+        margin: 0 auto;
+        text-align: center;
+    }
+}

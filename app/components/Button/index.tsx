@@ -11,16 +11,6 @@ interface ButtonProps {
 }
 
 export default class Button extends React.Component<ButtonProps, any> {
-  static propTypes = {
-    prefixCls: PropTypes.string,
-    type: PropTypes.string,
-    size: PropTypes.string,
-    disabled: PropTypes.bool,
-    icon: PropTypes.bool,
-    onClick: PropTypes.func,
-    className: PropTypes.string,
-  };
-
   static defaultProps = {
     prefixCls: 'bm-button',
     type: 'button',
