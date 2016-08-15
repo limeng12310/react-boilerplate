@@ -7,6 +7,7 @@ let closeDialog = () => {};
 interface ButtonProps {
     text: string;
     className?: string;
+    color?: string;
 }
 
 interface AlertConfigProps {
@@ -40,19 +41,31 @@ class AlertDialog extends React.Component<AlertDialogProps, any> {
         const alertClass = classNames({
             [className]: true,
             [prefixCls]: true,
-        })
 
+        });
+        const btnsClass = classNames({
+            [`${prefixCls}-btns`]: true,
+            [`${prefixCls}-btns-row`]: buttons.length === 2,
+            [`${prefixCls}-btns-column`]: buttons.length !== 2,
+        });
         return (
             <div className={alertClass}>
                 <div className={`${prefixCls}-mask`}></div>
                 <div className={`${prefixCls}-wrap`}>
-                    <p className={`${prefixCls}-title`}>{title}</p>
-                    <p className={`${prefixCls}-message`}>{message}</p>
-                    <div className={`${prefixCls}-btns`}>
+                    <div className={`${prefixCls}-info`}>
+                        <p className={`${prefixCls}-title`}>{title}</p>
+                        <p className={`${prefixCls}-message`}>{message}</p>
+                    </div>
+                    <div className={btnsClass}>
                         {buttons.map((item, index) => {
-                            return (
-                                <button key={index} className={`${prefixCls}-btn`} onClick={()=>onClick(index)}>{item.text}</button>
-                            );
+                            const color = item.color;
+                            let button = null;
+                            if(item.color) {
+                                button = <button style={{color: item.color}} key={index} className={`${prefixCls}-btn`} onClick={()=>onClick(index)}>{item.text}</button>;
+                            } else {
+                                button = <button key={index} className={`${prefixCls}-btn`} onClick={()=>onClick(index)}>{item.text}</button>;
+                            }
+                            return button;
                         })}
                     </div>
                 </div>

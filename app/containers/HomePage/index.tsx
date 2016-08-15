@@ -28,7 +28,13 @@ export class HomePage extends React.Component<HomePageProps, any> {
         this.props.changeRoute('/about');
     }
     showAlert() {
-        Alert.alert();
+        Alert.alert({message:"hello bizmobile"});
+    }
+    showAlertWithTwoBtn() {
+        Alert.alert({title:'biz-kcfe',message:"hello bizmobile", buttons:[{text:'取消',color:'grey'},{text:'确定'}]});
+    }
+    showAlertWithThreeBtn() {
+        Alert.alert({title:'biz-kcfe',message:"hello bizmobile<br/>快去更新!", buttons:[{text:'取消'},{text:'确定'},{text:'吐槽', color:'red'}]});
     }
     render() {
         return (
@@ -42,6 +48,8 @@ export class HomePage extends React.Component<HomePageProps, any> {
                 <Button onClick={() => this.props.changeRoute('/about')} disabled={true}>切换到关于我们2</Button>
                 <Button className="customer-btn" onClick={this.openAboutPageTest.bind(this)}>切换到关于我们3</Button>
                 <Button onClick={this.showAlert}>showAlert</Button>
+                <Button onClick={this.showAlertWithTwoBtn}>showAlert with two button</Button>
+                <Button onClick={this.showAlertWithThreeBtn}>showAlert with three button</Button>
             </div>
         );
     }
