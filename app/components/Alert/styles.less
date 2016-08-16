@@ -14,7 +14,7 @@
     };
     &-wrap{
         position: relative;
-        .px2px(width, 275px);
+        .px2rem(width, 275px);
         max-height: 80%;
         .scroll(overflow-y);
         background-color: @bg-4;
@@ -26,14 +26,14 @@
         text-align: center;
     }
     &-info{
-        .px2px(padding, 15px);
+        .px2rem(padding, 15px);
     }
     &-title{
-        .px2px(font-size, @font-size-6);
+        .px2rem(font-size, @font-size-6);
         font-weight: bold;
     }
     &-message{
-        .px2px(padding-top, 5px);
+        .px2rem(padding-top, 5px);
     }
     &-btns{
         display: flex;
@@ -42,8 +42,8 @@
         flex: 1;
         .border-top();
         color: @blue-500;
-        .px2px(font-size, @font-size-6);
-        .px2px(line-height, 45px);
+        .px2rem(font-size, @font-size-6);
+        .px2rem(line-height, 45px);
     }
     &-btns-row{
         .@{alertPrefixCls}-btn:first-of-type{
@@ -53,5 +53,10 @@
     &-btns-column{
         flex-direction: column;
     }
-
+    &-input {
+        .px2rem(margin-top, 5px);
+        .px2rem(padding, 5px);
+        .border();
+        width: 90%;
+    }
 }

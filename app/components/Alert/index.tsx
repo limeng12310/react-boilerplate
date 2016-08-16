@@ -14,30 +14,40 @@ interface AlertConfigProps {
     title?: string;
     message?: string;
     buttons?: Array<ButtonProps>;
-    onClick?: (x:any) => void;
+    onClick?: (x?:number, y?: string) => any;
+    defaultValue?: string;
 }
 
 interface AlertDialogProps {
     prefixCls?: string;
-    title: string;
-    message: string;
+    title?: string;
+    message?: string;
     className?: string;
-    onClick: (x: any)=>void;
-    buttons: Array<ButtonProps>;
+    onClick?: (x?: number, y?: string) => any;
+    buttons?: Array<ButtonProps>;
     type: string;
+    defaultValue?: string;
 }
-
+interface AlertDialog {
+    confirmInput?: any;
+}
 class AlertDialog extends React.Component<AlertDialogProps, any> {
     static defaultProps = {
         prefixCls: 'bm-alert',
-        title: '提示',
-        message: '',
         buttons: [{text: '确定'}],
         className: '',
     };
-
+    onClick = (index) => {
+        if(this.props.type === 'confirm') {
+            const value = this.confirmInput.value;
+            this.props.onClick(index, value);
+        } else {
+            this.props.onClick(index);
+        }
+    }
     render() {
-        const {prefixCls, title, message, buttons, className, onClick, type} = this.props;
+
+        const {prefixCls, title, message, buttons, className, onClick, type, defaultValue} = this.props;
         const alertClass = classNames({
             [className]: true,
             [prefixCls]: true,
@@ -48,22 +58,24 @@ class AlertDialog extends React.Component<AlertDialogProps, any> {
             [`${prefixCls}-btns-row`]: buttons.length === 2,
             [`${prefixCls}-btns-column`]: buttons.length !== 2,
         });
+
         return (
             <div className={alertClass}>
                 <div className={`${prefixCls}-mask`}></div>
                 <div className={`${prefixCls}-wrap`}>
                     <div className={`${prefixCls}-info`}>
-                        <p className={`${prefixCls}-title`}>{title}</p>
-                        <p className={`${prefixCls}-message`}>{message}</p>
+                        {title !== '' ? <p className={`${prefixCls}-title`}>{title}</p> : null}
+                        {message !== '' ? <p className={`${prefixCls}-message`} dangerouslySetInnerHTML={{__html: message}}/> : null}
+                        {type === 'confirm' ? <input ref={(c) => this.confirmInput = c} className={`${prefixCls}-input`} type="text" defaultValue={defaultValue}/> : null}
                     </div>
                     <div className={btnsClass}>
                         {buttons.map((item, index) => {
                             const color = item.color;
                             let button = null;
                             if(item.color) {
-                                button = <button style={{color: item.color}} key={index} className={`${prefixCls}-btn`} onClick={()=>onClick(index)}>{item.text}</button>;
+                                button = <button style={{color: item.color}} key={index} className={`${prefixCls}-btn`} onClick={()=>this.onClick(index)}>{item.text}</button>;
                             } else {
-                                button = <button key={index} className={`${prefixCls}-btn`} onClick={()=>onClick(index)}>{item.text}</button>;
+                                button = <button key={index} className={`${prefixCls}-btn`} onClick={()=>this.onClick(index)}>{item.text}</button>;
                             }
                             return button;
                         })}
@@ -89,12 +101,12 @@ function createDialog(config, type) {
         }
     }
     closeDialog = close;
-    function cb(buttonIndex) {
-        onClick(buttonIndex);
+    function cb(buttonIndex, confirmValue?:string) {
+        onClick(buttonIndex, confirmValue);
         close();
     }
     document.body.style.overflow = 'hidden';
-    ReactDOM.render(<AlertDialog type={type} onClick={cb} title={config.title} message={config.message} buttons={config.buttons}/>, div);
+    ReactDOM.render(<AlertDialog defaultValue={config.defaultValue} type={type} onClick={cb} title={config.title} message={config.message} buttons={config.buttons}/>, div);
 }
 
 export default class Alert {

@@ -28,19 +28,22 @@ export class HomePage extends React.Component<HomePageProps, any> {
         this.props.changeRoute('/about');
     }
     showAlert() {
-        Alert.alert({message:"hello bizmobile"});
+        Alert.alert();
     }
-    showAlertWithTwoBtn() {
-        Alert.alert({title:'biz-kcfe',message:"hello bizmobile", buttons:[{text:'取消',color:'grey'},{text:'确定'}]});
+    showAlertWithTwoBtn(index, value) {
+        Alert.alert({title:'biz',message:value, buttons:[{text:'取消',color:'grey'},{text:'确定'}]});
     }
     showAlertWithThreeBtn() {
-        Alert.alert({title:'biz-kcfe',message:"hello bizmobile<br/>快去更新!", buttons:[{text:'取消'},{text:'确定'},{text:'吐槽', color:'red'}]});
+        Alert.alert({title:'biz-kcfe',message:"hello bizmobile<br>快去更新!", buttons:[{text:'取消'},{text:'确定'},{text:'吐槽', color:'red'}]});
+    }
+    showAlertConfirm() {
+        Alert.confirm({title:'请输入用户名', defaultValue: 'tjz', onClick: this.showAlertWithTwoBtn});
     }
     render() {
         return (
             <div>
                 <Nav color="red"/>
-                这是首页kkk
+                这是首页
                 <p>全局数:{this.props.num}</p>
                 <Button onClick={this.props.onAddNum} size="small">加</Button>
                 <Button onClick={this.props.onMinusNum} disabled={true} size="small">减</Button>
@@ -48,8 +51,8 @@ export class HomePage extends React.Component<HomePageProps, any> {
                 <Button onClick={() => this.props.changeRoute('/about')} disabled={true}>切换到关于我们2</Button>
                 <Button className="customer-btn" onClick={this.openAboutPageTest.bind(this)}>切换到关于我们3</Button>
                 <Button onClick={this.showAlert}>showAlert</Button>
-                <Button onClick={this.showAlertWithTwoBtn}>showAlert with two button</Button>
                 <Button onClick={this.showAlertWithThreeBtn}>showAlert with three button</Button>
+                <Button onClick={this.showAlertConfirm.bind(this)}>showAlertConfirm</Button>
             </div>
         );
     }
