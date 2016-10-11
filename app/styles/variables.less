@@ -51,7 +51,12 @@
 @radius-2: 6px;
 
 .px2rem(@name, @px){
-    @{name}: 2rem * @px / 64;
+  @media screen and (max-width: 1242px){
+      @{name}: 2rem * @px / 64;
+  }
+  @media screen and (min-width: 1243px){
+      @{name}: 1rem * @px / 64;
+  }
 }
 
 .px2px(@name, @px){
@@ -77,32 +82,42 @@
 }
 
 .border(@color: @border-2, @width: 1px, @type: solid) {
-  border: @width @type @color;
-  .px2rem(border-width, @width);
+  border: @width * 1px @type @color;
+  & when (@width > 1px) {
+    .px2rem(border-width, @width);
+  }
   box-sizing: border-box;
 }
 
 .border-top(@color: @border-2, @width: 1px, @type: solid){
-  border-top: @width @type @color;
-  .px2rem(border-top-width, @width);
+  border-top: @width * 1px @type @color;
+  & when (@width > 1px) {
+    .px2rem(border-top-width, @width);
+  }
   box-sizing: border-box;
 }
 
 .border-right(@color: @border-2, @width: 1px, @type: solid){
-  border-right: @width @type @color;
-  .px2rem(border-right-width, @width);
+  border-right: @width * 1px @type @color;
+  & when (@width > 1px) {
+    .px2rem(border-right-width, @width);
+  }
   box-sizing: border-box;
 }
 
 .border-bottom(@color: @border-2, @width: 1px, @type: solid){
-  border-bottom: @width @type @color;
-  .px2rem(border-bottom-width, @width);
+  border-bottom: @width * 1px @type @color;
+  & when (@width > 1px) {
+    .px2rem(border-bottom-width, @width);
+  }
   box-sizing: border-box;
 }
 
 .border-left(@color: @border-2, @width: 1px, @type: solid){
-  border-left: @width @type @color;
-  .px2rem(border-left-width, @width);
+  border-left: @width * 1px @type @color;
+  & when (@width > 1px) {
+    .px2rem(border-left-width, @width);
+  }
   box-sizing: border-box;
 }
 

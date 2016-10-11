@@ -20,7 +20,7 @@ var devConfigExtension = {
 
     output: {
         filename: '[name].js',
-        publicPath: "http://localhost:3333/dist/"
+        publicPath: "http://10.129.162.31:3333/dist/"
     },
 
     // more options here: http://webpack.github.io/docs/configuration.html#devtool
@@ -39,7 +39,7 @@ var devConfigExtension = {
             //{ test: /\.import\.css$/,  loader: "style!css", include: path.resolve(__dirname, "app") },
             {
                 test: /\.less$/,
-                loader: ExtractTextPlugin.extract("css?sourceMap!less?sourceMap"),
+                loader: ExtractTextPlugin.extract("css?sourceMap!postcss?sourceMap!less?sourceMap"),
                 include: path.resolve(__dirname, "app")
             }, /*{
                 test: /\.less$/,
@@ -54,7 +54,9 @@ var devConfigExtension = {
             { test: /\.(jpg|png|jpg|png|woff|eot|ttf|svg|gif)$/, loader: "file-loader?name=[name].[ext]" }
         ]
     },
-
+    postcss: function () {
+        return [require('postcss-flexboxfixer'), require('autoprefixer')];
+    },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
         new ExtractTextPlugin("[name].css", {

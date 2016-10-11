@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "sourceMap": true,
+        "allowSyntheticDefaultImports": true,
+        "module": "commonjs",
+        "declaration": false,
+        "noImplicitUseStrict": true,
+        "target": "es6",
+        "experimentalDecorators": true
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
