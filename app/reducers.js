@@ -1,4 +1,3 @@
-import ReducersMapObject = Redux.ReducersMapObject;
 
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
@@ -26,6 +25,6 @@ function routerReducer(state = routeInitialState, action) {
 
 export default function createReducer(asyncReducers = {}) {
   // let test = {...asyncReducers};
-  const reducers = Object.assign({routing: routerReducer, global: globalReducer}, asyncReducers as ReducersMapObject);
+  const reducers = Object.assign({routing: routerReducer, global: globalReducer}, asyncReducers);
   return combineReducers(reducers);
 }

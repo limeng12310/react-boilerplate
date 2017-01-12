@@ -15,7 +15,7 @@ var config = {
             'babel-polyfill'
         ],
         app: [
-            path.join(__dirname, 'app', 'app.tsx')
+            path.join(__dirname, 'app', 'app.js')
         ]
     },
 
@@ -25,7 +25,7 @@ var config = {
     },
 
     resolve: {
-        extensions: ['', '.tsx', '.ts', '.js', '.less','.css'],
+        extensions: ['', '.js', '.less','.css'],
         modulesDirectories: ["app","node_modules"], //http://davidboyne.co.uk/2016/04/29/react-webpack-gem.html
         alias: {
             'react$': path.join(nodeModulesPath, 'react', 'react.js'),
@@ -41,19 +41,9 @@ var config = {
     },
 
     module: {
-        preLoaders: [
-            { test: /\.tsx?$/, loader: "tslint", include: path.resolve(__dirname, "app") },
-        ],
         noParse: [],
         loaders: [
             // TODO remove crazy require when https://github.com/babel/babel-loader/issues/166 is fixed.
-            {
-                test: /\.tsx?$/,
-                loader: 'babel?cacheDirectory,plugins[]=' + require.resolve(path.join(nodeModulesPath, 'babel-plugin-external-helpers-2')) +
-                ',presets[]=' + require.resolve(path.join(nodeModulesPath, 'babel-preset-es2015-loose')) +
-                '!ts-loader?configFileName=tsconfig.json',
-                include: path.resolve(__dirname, "app")
-            },
             { test: /\.css$/,  loader: "style-loader!css-loader?minimize", include: path.resolve(__dirname, "app") },
             { test: /\.less$/, exclude: /\.module\.less$/, loader: "style-loader!css-loader?minimize!less-loader?compress", include: path.resolve(__dirname, "app") },
             { test: /\.css\.less$/,
@@ -70,11 +60,6 @@ var config = {
         })
     ],
 
-    tslint: {
-        // Rules are in tslint.json
-        emitErrors: true, // false = WARNING for webpack, true = ERROR for webpack
-        formattersDirectory: path.join(nodeModulesPath, 'tslint-loader', 'formatters')
-    },
 };
 
 if (isProduction) {

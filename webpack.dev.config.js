@@ -14,7 +14,7 @@ var devConfigExtension = {
             //'webpack-dev-server/client?http://localhost:3333',
             //'webpack/hot/only-dev-server',
             'webpack-hot-middleware/client',
-            './app/app.tsx'
+            './app/app.js'
         ]//.concat(mainConfig.entry.app)
     },
 
@@ -31,9 +31,9 @@ var devConfigExtension = {
     module: {
         loaders: [
             {
-                test: /\.tsx?$/,
-                loaders: ['babel', 'ts?configFileName=tsconfig.json'],
-                include: path.join(__dirname, 'app')
+                test: /\.js?$/,
+                loaders: ['babel'],
+                exclude : /node_modules/
             },
             //{ test: /\.css$/, exclude: /\.import\.css$/,  loader: "style!css", include: path.resolve(__dirname, "app") },
             //{ test: /\.import\.css$/,  loader: "style!css", include: path.resolve(__dirname, "app") },

@@ -1,8 +1,3 @@
-interface Window {
-    devToolsExtension?: any;
-}
-declare var window: Window;
-
 /**
  * Create the store with asynchronously loaded reducers
  */

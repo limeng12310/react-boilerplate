@@ -10,14 +10,7 @@ import Nav from '../../components/Nav';
 import Button from '../../components/Button';
 import Alert from '../../components/Alert';
 
-interface HomePageProps {
-    num:number;
-    onAddNum: (x: any) => void;
-    onMinusNum: (x: any) => void;
-    changeRoute?: Function;
-}
-
-export class HomePage extends React.Component<HomePageProps, any> {
+export class HomePage extends React.Component {
 
     componentDidMount() {
     }
