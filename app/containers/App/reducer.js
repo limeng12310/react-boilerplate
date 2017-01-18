@@ -1,20 +1,18 @@
-
 import {
     ADD_NUM,
     MINUS_NUM,
 } from './constants';
-import {fromJS} from 'immutable';
 
-const initialState = fromJS({
-    num: 0,
-});
+const initialState = {
+    num: 100,
+};
 
 function appReducer(state = initialState, action) {
     switch (action.type) {
         case ADD_NUM:
-            return state.set('num', state.get('num') + 10);
+            return {...state, num: state.num + 10};
         case MINUS_NUM:
-            return state.set('num', state.get('num') - 1);
+            return {...state, num: state.num - 1};
         default:
             return state;
     }

@@ -43,7 +43,6 @@ var config = {
     module: {
         noParse: [],
         loaders: [
-            // TODO remove crazy require when https://github.com/babel/babel-loader/issues/166 is fixed.
             { test: /\.css$/,  loader: "style-loader!css-loader?minimize", include: path.resolve(__dirname, "app") },
             { test: /\.less$/, exclude: /\.module\.less$/, loader: "style-loader!css-loader?minimize!less-loader?compress", include: path.resolve(__dirname, "app") },
             { test: /\.css\.less$/,

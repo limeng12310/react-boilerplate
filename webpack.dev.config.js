@@ -17,10 +17,13 @@ var devConfigExtension = {
             './app/app.js'
         ]//.concat(mainConfig.entry.app)
     },
-
+    resolve: {
+        extensions: ['', '.tsx', '.ts', '.js', '.less','.css'],
+        modulesDirectories: ["node_modules"]
+    },
     output: {
         filename: '[name].js',
-        publicPath: "http://10.129.162.31:3333/dist/"
+        publicPath: "/dist/"
     },
 
     // more options here: http://webpack.github.io/docs/configuration.html#devtool
@@ -36,10 +39,11 @@ var devConfigExtension = {
                 exclude : /node_modules/
             },
             //{ test: /\.css$/, exclude: /\.import\.css$/,  loader: "style!css", include: path.resolve(__dirname, "app") },
-            //{ test: /\.import\.css$/,  loader: "style!css", include: path.resolve(__dirname, "app") },
+            { test: /\.css$/,  loaders: ['style', "css"]},
             {
                 test: /\.less$/,
-                loader: ExtractTextPlugin.extract("css?sourceMap!postcss?sourceMap!less?sourceMap"),
+                //loader: ExtractTextPlugin.extract("css?sourceMap!postcss?sourceMap!less?sourceMap"),
+                loaders: ['style', "css?sourceMap","less?sourceMap"],
                 include: path.resolve(__dirname, "app")
             }, /*{
                 test: /\.less$/,
@@ -51,17 +55,17 @@ var devConfigExtension = {
                 ]
             },*/
             //{ test: /\.css$/, loader: "style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!less", include: path.resolve(__dirname, "app") },
-            { test: /\.(jpg|png|jpg|png|woff|eot|ttf|svg|gif)$/, loader: "file-loader?name=[name].[ext]" }
+            { test: /\.(jpg|png|jpg|png|woff|eot|ttf|svg|gif)$/, loader: "url?limit=10000" }
         ]
     },
-    postcss: function () {
-        return [require('postcss-flexboxfixer'), require('autoprefixer')];
-    },
+    /*postcss: function () {
+        return [require('autoprefixer')];
+    },*/
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
-        new ExtractTextPlugin("[name].css", {
+        /*new ExtractTextPlugin("[name].css", {
             allChunks: false
-        }),
+        }),*/
         // Used for hot-reload
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()

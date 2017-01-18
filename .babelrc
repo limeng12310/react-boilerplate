@@ -2,11 +2,12 @@
   "presets": [
     "es2015",
     "react",
-    "stage-1"
+    "stage-0"
   ],
   "env": {
     "development": {
       "plugins": [
+        ["import", { "libraryName": "antd"}],
         [
           "transform-object-rest-spread"
         ],

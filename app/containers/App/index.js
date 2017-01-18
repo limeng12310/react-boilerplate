@@ -1,14 +1,9 @@
-
-
 import * as React from 'react';
-
+import NotFound from '../../components/NotFound'
 function App(props) {
-  return (
-    <div>
-        <header>hello biz-mobile!</header>
-        {props.children}
-    </div>
-  );
+    return (
+        props.children || <NotFound/>
+    );
 }
 
 export default App;
